@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySuperBrain — Where Young Talent Meets the World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --paper: #faf9f6;
+    --accent: #ff4d2e;
+    --accent2: #ffd23f;
+    --teal: #00c9a7;
+    --soft: #f0ede6;
+    --muted: #888880;
+    --card-bg: #ffffff;
+    --nav-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    background: rgba(250,249,246,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(10,10,15,.07);
+    transition: background .3s;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: .88rem; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: .02em;
+    opacity: .65;
+    transition: opacity .2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper) !important;
+    opacity: 1 !important;
+    padding: .5rem 1.25rem;
+    border-radius: 100px;
+    font-size: .85rem !important;
+    font-weight: 600 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    padding-top: var(--nav-h);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding-left: 8vw;
+    padding-right: 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob1 { width: 500px; height: 500px; background: rgba(255,77,46,.12); top: -80px; right: -120px; }
+  .blob2 { width: 400px; height: 400px; background: rgba(0,201,167,.1); bottom: 0; left: 5%; }
+  .blob3 { width: 300px; height: 300px; background: rgba(255,210,63,.12); top: 30%; right: 30%; }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--soft); border: 1px solid rgba(10,10,15,.1);
+    border-radius: 100px;
+    padding: .35rem 1rem;
+    font-size: .78rem; font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    animation: fadeUp .6s ease both;
+  }
+  .hero-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.03em;
+    animation: fadeUp .7s .1s ease both;
+  }
+  h1 .highlight {
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+  }
+  h1 .highlight::after {
+    content: '';
+    position: absolute; left: 0; bottom: 4px;
+    width: 100%; height: 6px;
+    background: var(--accent2);
+    border-radius: 3px;
+    z-index: -1;
+    transform: skewX(-4deg);
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.7;
+    max-width: 440px;
+    font-weight: 300;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp .7s .3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: .85rem 2rem; border-radius: 100px;
+    font-size: .95rem; font-weight: 600;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(255,77,46,.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,77,46,.4); }
+
+  .btn-ghost {
+    background: transparent; color: var(--ink);
+    padding: .85rem 2rem; border-radius: 100px;
+    font-size: .95rem; font-weight: 500;
+    text-decoration: none;
+    border: 1.5px solid rgba(10,10,15,.2);
+    transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: var(--ink); background: var(--soft); }
+
+  .hero-stats {
+    margin-top: 3rem;
+    display: flex; gap: 2.5rem;
+    animation: fadeUp .7s .4s ease both;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 800;
+    color: var(--ink);
+  }
+  .stat-label { font-size: .78rem; color: var(--muted); margin-top: .15rem; text-transform: uppercase; letter-spacing: .08em; }
+
+  /* hero visual */
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 1rem;
+    animation: fadeUp .8s .15s ease both;
+  }
+
+  .talent-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    box-shadow: 0 4px 24px rgba(10,10,15,.06);
+    border: 1px solid rgba(10,10,15,.05);
+    transition: transform .3s;
+  }
+  .talent-card:hover { transform: translateX(6px); }
+
+  .talent-emoji { font-size: 2rem; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 14px; flex-shrink: 0; }
+  .tc1 .talent-emoji { background: #fff5f3; }
+  .tc2 .talent-emoji { background: #f0fdf9; }
+  .tc3 .talent-emoji { background: #fffbeb; }
+  .tc4 .talent-emoji { background: #f5f0ff; }
+
+  .talent-info strong { display: block; font-size: .9rem; font-weight: 600; color: var(--ink); }
+  .talent-info span { font-size: .78rem; color: var(--muted); }
+
+  .talent-badge {
+    margin-left: auto;
+    background: var(--teal);
+    color: #fff;
+    font-size: .7rem; font-weight: 600;
+    padding: .25rem .7rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .badge-warm { background: var(--accent); }
+  .badge-gold { background: var(--accent2); color: var(--ink); }
+
+  /* ── SECTION SCAFFOLDING ── */
+  section { padding: 7rem 8vw; }
+  .section-eyebrow {
+    font-size: .78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--accent);
+    margin-bottom: .75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -.025em;
+    line-height: 1.1;
+  }
+  .section-sub {
+    color: #666; font-size: 1rem; line-height: 1.7;
+    font-weight: 300; max-width: 520px; margin-top: .75rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 32px;
+    margin: 0 3vw;
+    padding: 6rem 7vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  #about .section-eyebrow { color: var(--teal); }
+  #about .section-title { color: var(--paper); }
+  #about .section-sub { color: rgba(250,249,246,.6); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .feature-tile {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    padding: 1.5rem;
+    transition: background .3s;
+  }
+  .feature-tile:hover { background: rgba(255,255,255,.09); }
+  .feature-icon { font-size: 1.8rem; margin-bottom: .75rem; }
+  .feature-tile h4 { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+  .feature-tile p { font-size: .82rem; color: rgba(250,249,246,.55); line-height: 1.6; }
+
+  /* ── COURSES STRIP ── */
+  #courses {
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+  .courses-header { padding: 0 8vw 2.5rem; }
+
+  .courses-track {
+    display: flex; gap: 1.25rem;
+    animation: scroll-x 28s linear infinite;
+    width: max-content;
+  }
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .courses-track:hover { animation-play-state: paused; }
+
+  .course-pill {
+    background: var(--card-bg);
+    border: 1px solid rgba(10,10,15,.08);
+    border-radius: 100px;
+    padding: .9rem 1.6rem;
+    display: flex; align-items: center; gap: .7rem;
+    font-size: .9rem; font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(10,10,15,.04);
+    cursor: default;
+    transition: box-shadow .2s;
+  }
+  .course-pill:hover { box-shadow: 0 4px 20px rgba(10,10,15,.1); }
+  .course-pill .ce { font-size: 1.2rem; }
+
+  /* ── SHOWCASE ── */
+  #showcase { background: var(--soft); }
+  .showcase-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .showcase-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(10,10,15,.06);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .showcase-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(10,10,15,.1); }
+
+  .sc-img {
+    width: 100%; aspect-ratio: 1;
+    background: linear-gradient(135deg, #f5e6e6, #e6f5f0);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .sc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sc-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,15,.5), transparent);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .showcase-card:hover .sc-overlay { opacity: 1; }
+
+  .sc-label {
+    padding: 1rem 1.1rem;
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .sc-label strong { display: block; font-size: .92rem; color: var(--ink); margin-bottom: .1rem; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    padding: 7rem 8vw;
+    align-items: start;
+  }
+  .testi-header { grid-column: 1 / -1; margin-bottom: .5rem; }
+
+  .testi-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(10,10,15,.07);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(10,10,15,.08); }
+  .testi-card.featured {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .testi-card.featured .testi-name { color: var(--paper); }
+  .testi-card.featured .testi-role { color: rgba(250,249,246,.5); }
+
+  .quote-mark {
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem; line-height: .8;
+    color: var(--accent);
+    margin-bottom: .5rem;
+    font-weight: 800;
+  }
+  .testi-text { font-size: .9rem; line-height: 1.75; color: #555; font-weight: 300; }
+  .featured .testi-text { color: rgba(250,249,246,.7); }
+
+  .testi-author {
+    display: flex; align-items: center; gap: .85rem;
+    margin-top: 1.5rem;
+  }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    object-fit: cover;
+    background: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: .9rem; font-weight: 600; color: var(--ink); }
+  .testi-role { font-size: .75rem; color: var(--muted); }
+
+  /* ── TEAM ── */
+  #team { padding: 7rem 8vw; }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .team-card {
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: .8;
+    cursor: pointer;
+  }
+  .team-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .5s;
+    filter: grayscale(20%);
+  }
+  .team-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
+  .team-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,15,.85) 0%, transparent 55%);
+  }
+  .team-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem;
+    color: var(--paper);
+  }
+  .team-info h3 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; }
+  .team-role { font-size: .8rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; }
+  .team-bio { font-size: .82rem; color: rgba(250,249,246,.7); line-height: 1.6; margin-top: .5rem; max-height: 0; overflow: hidden; transition: max-height .4s; }
+  .team-card:hover .team-bio { max-height: 120px; }
+  /* placeholder team bg */
+  .team-placeholder { width: 100%; height: 100%; object-fit: cover; }
+  .tph1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .tph2 { background: linear-gradient(135deg, #0f3460, #533483); }
+  .tph3 { background: linear-gradient(135deg, #2d1b69, #11998e); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ink);
+    border-radius: 32px;
+    margin: 0 3vw 4rem;
+    padding: 6rem 7vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    color: var(--paper);
+  }
+  #contact .section-eyebrow { color: var(--teal); }
+  #contact .section-title { color: var(--paper); }
+  #contact .section-sub { color: rgba(250,249,246,.55); }
+
+  .contact-info { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    font-size: .9rem;
+    color: rgba(250,249,246,.8);
+  }
+  .contact-item .ci { font-size: 1.25rem; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  input, textarea {
+    width: 100%;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    padding: .95rem 1.25rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    color: var(--paper);
+    outline: none;
+    transition: border-color .2s;
+    resize: none;
+  }
+  input::placeholder, textarea::placeholder { color: rgba(250,249,246,.35); }
+  input:focus, textarea:focus { border-color: var(--teal); }
+
+  .btn-submit {
+    background: var(--accent); color: #fff;
+    padding: 1rem 2rem; border-radius: 100px;
+    font-size: .95rem; font-weight: 600;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: transform .2s, box-shadow .2s;
+    align-self: flex-start;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,77,46,.4); }
+
+  /* ── DOWNLOAD ── */
+  #download {
+    padding: 6rem 8vw;
+    display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .download-text .section-title { max-width: 500px; }
+  .download-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .app-btn {
+    background: var(--ink); color: var(--paper);
+    border-radius: 16px;
+    padding: .85rem 1.75rem;
+    text-decoration: none;
+    display: flex; align-items: center; gap: .85rem;
+    transition: background .2s, transform .2s;
+    border: 1.5px solid transparent;
+  }
+  .app-btn:hover { background: #1e1e2a; transform: translateY(-2px); }
+  .app-btn .ab-icon { font-size: 1.8rem; }
+  .ab-text small { display: block; font-size: .7rem; color: rgba(250,249,246,.5); text-transform: uppercase; letter-spacing: .08em; }
+  .ab-text strong { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(250,249,246,.55);
+    padding: 4rem 8vw 2rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  .footer-brand .nav-logo { color: var(--paper); }
+  .footer-brand p { margin-top: .75rem; font-size: .85rem; line-height: 1.7; max-width: 280px; }
+  .footer-col h5 {
+    font-family: 'Syne', sans-serif;
+    font-size: .85rem; font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 1rem;
+    text-transform: uppercase; letter-spacing: .1em;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .footer-col a { color: rgba(250,249,246,.5); text-decoration: none; font-size: .85rem; transition: color .2s; }
+  .footer-col a:hover { color: var(--paper); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1.5rem;
+    font-size: .8rem;
+  }
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.07);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .95rem; text-decoration: none;
+    transition: background .2s;
+  }
+  .social-links a:hover { background: rgba(255,255,255,.15); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #home { grid-template-columns: 1fr; padding-top: calc(var(--nav-h) + 2rem); }
+    .hero-visual { display: none; }
+    #about, #contact { grid-template-columns: 1fr; margin: 0; border-radius: 0; gap: 3rem; }
+    #testimonials { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    section, #download { padding: 4rem 6vw; }
+    .team-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">My<span>Super</span>Brain</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#showcase">Showcase</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#download" class="nav-cta">Download App</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-blob blob1"></div>
+  <div class="hero-bg-blob blob2"></div>
+  <div class="hero-bg-blob blob3"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      India's Leading Student Talent Platform
+    </div>
+    <h1>Where Young <span class="highlight">Talent</span><br>Meets the World</h1>
+    <p class="hero-sub">MySuperBrain is a purpose-built platform that empowers students to discover their strengths, develop real-world skills, and share their talents with a global audience — far beyond marks and report cards.</p>
+    <div class="hero-actions">
+      <a href="#download" class="btn-primary">Get Started →</a>
+      <a href="#about" class="btn-ghost">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">Active Students</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Talent Disciplines</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Cities Represented</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="talent-card tc1">
+      <div class="talent-emoji">🎨</div>
+      <div class="talent-info">
+        <strong>Painting & Art</strong>
+        <span>1,200+ submissions</span>
+      </div>
+      <span class="talent-badge">Trending</span>
+    </div>
+    <div class="talent-card tc2">
+      <div class="talent-emoji">🎵</div>
+      <div class="talent-info">
+        <strong>Music</strong>
+        <span>860+ videos</span>
+      </div>
+      <span class="talent-badge badge-gold">New</span>
+    </div>
+    <div class="talent-card tc3">
+      <div class="talent-emoji">💃</div>
+      <div class="talent-info">
+        <strong>Dance</strong>
+        <span>940+ performances</span>
+      </div>
+      <span class="talent-badge badge-warm">Live</span>
+    </div>
+    <div class="talent-card tc4">
+      <div class="talent-emoji">✍️</div>
+      <div class="talent-info">
+        <strong>Writing & Storytelling</strong>
+        <span>720+ stories</span>
+      </div>
+      <span class="talent-badge">Popular</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-eyebrow">Our Mission</div>
+    <h2 class="section-title">Education That Goes<br>Beyond the Classroom</h2>
+    <p class="section-sub">MySuperBrain was built on a simple belief: every student possesses a unique talent worth celebrating. Our platform gives young minds the recognition, tools, and global stage they deserve — not just academic grades.</p>
+    <div style="margin-top:2rem;">
+      <a href="#download" class="btn-primary" style="background:var(--teal);box-shadow:0 4px 20px rgba(0,201,167,.3);">Start Your Journey →</a>
+    </div>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-tile">
+      <div class="feature-icon">🌍</div>
+      <h4>Global Visibility</h4>
+      <p>Your work reaches students, educators, and talent scouts worldwide — not just your local community.</p>
+    </div>
+    <div class="feature-tile">
+      <div class="feature-icon">📊</div>
+      <h4>Performance Insights</h4>
+      <p>Receive structured feedback and in-depth analytics on every submission to track and accelerate growth.</p>
+    </div>
+    <div class="feature-tile">
+      <div class="feature-icon">🏆</div>
+      <h4>Live Competitions</h4>
+      <p>Compete in curated events spanning art, music, writing, dance, and more — and earn the recognition you deserve.</p>
+    </div>
+    <div class="feature-tile">
+      <div class="feature-icon">📚</div>
+      <h4>Expert-Led Courses</h4>
+      <p>Build future-ready skills with guided programs in financial literacy, communication, logical reasoning, and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES MARQUEE -->
+<section id="courses" style="padding: 4rem 0; background: var(--soft);">
+  <div class="courses-header reveal">
+    <div class="section-eyebrow">Disciplines & Programmes</div>
+    <h2 class="section-title">A Stage for Every Skill</h2>
+  </div>
+  <div style="overflow:hidden; padding: 1.5rem 0; margin-top: 1.5rem;">
+    <div class="courses-track">
+      <div class="course-pill"><span class="ce">🎨</span> Painting</div>
+      <div class="course-pill"><span class="ce">🖌️</span> Art & Craft</div>
+      <div class="course-pill"><span class="ce">🎵</span> Music</div>
+      <div class="course-pill"><span class="ce">💃</span> Dance</div>
+      <div class="course-pill"><span class="ce">💰</span> Financial Education</div>
+      <div class="course-pill"><span class="ce">🗣️</span> Communication Skills</div>
+      <div class="course-pill"><span class="ce">🧠</span> Logical Thinking</div>
+      <div class="course-pill"><span class="ce">✍️</span> Writing</div>
+      <div class="course-pill"><span class="ce">📖</span> Storytelling</div>
+      <div class="course-pill"><span class="ce">🎭</span> Drama</div>
+      <div class="course-pill"><span class="ce">📸</span> Photography</div>
+      <div class="course-pill"><span class="ce">🎨</span> Painting</div>
+      <div class="course-pill"><span class="ce">🖌️</span> Art & Craft</div>
+      <div class="course-pill"><span class="ce">🎵</span> Music</div>
+      <div class="course-pill"><span class="ce">💃</span> Dance</div>
+      <div class="course-pill"><span class="ce">💰</span> Financial Education</div>
+      <div class="course-pill"><span class="ce">🗣️</span> Communication Skills</div>
+      <div class="course-pill"><span class="ce">🧠</span> Logical Thinking</div>
+      <div class="course-pill"><span class="ce">✍️</span> Writing</div>
+      <div class="course-pill"><span class="ce">📖</span> Storytelling</div>
+      <div class="course-pill"><span class="ce">🎭</span> Drama</div>
+      <div class="course-pill"><span class="ce">📸</span> Photography</div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="reveal">
+    <div class="section-eyebrow">Featured Works</div>
+    <h2 class="section-title">Young Artists,<br>Extraordinary Vision</h2>
+    <p class="section-sub">A curated selection of standout artwork submitted by students across India. Every piece reflects genuine creativity, imagination, and dedication.</p>
+  </div>
+  <div class="showcase-grid reveal">
+    <div class="showcase-card">
+      <div class="sc-img" style="background:linear-gradient(135deg,#ffd6d6,#ffa8e8)">
+        <div class="sc-overlay"></div>
+        <span><img src="http://myspuerbrain.com/img/paintings/01.jpg" class="img-fluid" alt="" /></span>
+      </div>
+      <div class="sc-label"><strong>Spring Garden</strong>Priya, Age 9 — Hyderabad</div>
+    </div>
+    <div class="showcase-card">
+      <div class="sc-img" style="background:linear-gradient(135deg,#d6f0ff,#a8d8ff)">
+        <div class="sc-overlay"></div>
+        <span><img src="img/paintings/02.jpg" class="img-fluid" alt="" /></span>
+      </div>
+      <div class="sc-label"><strong>Ocean Waves</strong>Arjun, Age 11 — Delhi</div>
+    </div>
+    <div class="showcase-card">
+      <div class="sc-img" style="background:linear-gradient(135deg,#fffad6,#ffd78a)">
+        <div class="sc-overlay"></div>
+        <span><img src="img/paintings/03.jpg" class="img-fluid" alt="" /></span>
+      </div>
+      <div class="sc-label"><strong>Sunflower Field</strong>Meera, Age 8 — Mumbai</div>
+    </div>
+    <div class="showcase-card">
+      <div class="sc-img" style="background:linear-gradient(135deg,#d6ffd6,#8affb0)">
+        <div class="sc-overlay"></div>
+        <span><img src="img/paintings/04.jpg" class="img-fluid" alt="" /></span>
+      </div>
+      <div class="sc-label"><strong>Forest Magic</strong>Rishi, Age 10 — Bengaluru</div>
+    </div>
+    <div class="showcase-card">
+      <div class="sc-img" style="background:linear-gradient(135deg,#fde6ff,#c8a8ff)">
+        <div class="sc-overlay"></div>
+        <span><img src="img/paintings/05.jpg" class="img-fluid" alt="" /></span>
+      </div>
+      <div class="sc-label"><strong>Butterfly Dream</strong>Ananya, Age 7 — Pune</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background: white;">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Voices From Our Community</div>
+    <h2 class="section-title">Changing Lives,<br>One Talent at a Time</h2>
+  </div>
+
+  <div class="testi-card featured reveal">
+    <div class="quote-mark">"</div>
+    <p class="testi-text">For years I wondered why our education system focuses so heavily on marks and rankings, with so little attention given to the diverse talents children possess. MySuperBrain is solving exactly that — and doing it brilliantly.</p>
+    <div class="testi-author">
+      <div class="testi-avatar" style="background:#333;color:#fff;font-size:.9rem;">VB</div>
+      <div>
+        <div class="testi-name" style="color:var(--paper);">Varun Chand Bandlamudi</div>
+        <div class="testi-role">Parent</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testi-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testi-text">My daughter has always had a passion for painting and a natural desire to share her work with others. MySuperBrain has given her a safe, meaningful platform to do just that — and the encouragement she needed to keep going.</p>
+    <div class="testi-author">
+      <div class="testi-avatar" style="background:#e6f5f0;font-size:1rem;">👩</div>
+      <div>
+        <div class="testi-name">Bhagavathi Telukuntla</div>
+        <div class="testi-role">Mother, USA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testi-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testi-text">As a student from a smaller city, I never had the visibility that students in metros do. MySuperBrain changed that completely — it gave me a world-class stage regardless of where I come from.</p>
+    <div class="testi-author">
+      <div class="testi-avatar" style="background:#fff5f3;font-size:1rem;">🧑</div>
+      <div>
+        <div class="testi-name">Kushagra</div>
+        <div class="testi-role">Student, Lakhanpur</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-eyebrow">Leadership</div>
+    <h2 class="section-title">Built by Believers<br>in Student Potential</h2>
+    <p class="section-sub" style="margin: .75rem auto 0;">A team of experienced professionals united by a single conviction — that every student's talent deserves a global platform.</p>
+  </div>
+  <div class="team-grid reveal">
+    <div class="team-card">
+      <div class="tph1 team-placeholder" style="position:absolute;inset:0;"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;">👨‍💼</div>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-role">Co-Founder & CEO</div>
+        <h3>Raghu</h3>
+        <p class="team-bio">An IIM Kozhikode alumnus with international experience in the US, Raghu founded MySuperBrain to create a borderless platform where students' talents receive the recognition they truly deserve.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="tph2 team-placeholder" style="position:absolute;inset:0;"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;">👨‍💻</div>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-role">Co-Founder & COO</div>
+        <h3>Yuvraj</h3>
+        <p class="team-bio">IIM Kozhikode alumnus and the operational force behind MySuperBrain. Yuvraj champions a broader definition of education — one that nurtures creativity, character, and potential beyond the syllabus.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="tph3 team-placeholder" style="position:absolute;inset:0;"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;">🧑‍🔬</div>
+      <div class="team-overlay"></div>
+      <div class="team-info">
+        <div class="team-role">Chief Technology Officer</div>
+        <h3>Amar</h3>
+        <p class="team-bio">The engineering visionary behind the platform's architecture, Amar is constantly innovating to deliver a seamless, scalable experience for thousands of students and educators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2 class="section-title">We'd Love to<br>Hear From You</h2>
+    <p class="section-sub">Whether you're a student, parent, educator, or institution — our team is ready to assist. Reach out and let's start a conversation.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="ci">✉️</span>
+        raghu@mysuperbrain.com
+      </div>
+      <div class="contact-item">
+        <span class="ci">📞</span>
+        Call / WhatsApp: +91 9701320902
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal">
+    <div class="form-row">
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email Address">
+    </div>
+    <input type="text" placeholder="How can we help you?">
+    <textarea rows="5" placeholder="Tell us more about your query or feedback..."></textarea>
+    <button class="btn-submit" type="button">Send Message →</button>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="download-text reveal">
+    <div class="section-eyebrow">Available Now</div>
+    <h2 class="section-title">Your Talent, Always<br>Within Reach</h2>
+    <p class="section-sub">Download the MySuperBrain app and carry your creative journey with you. Showcase, compete, and grow — anytime, anywhere.</p>
+  </div>
+  <div class="download-btns reveal">
+    <a href="https://play.google.com/store/apps/details?id=com.grapplesoft.msb_app" class="app-btn" target="_blank">
+      <span class="ab-icon">📱</span>
+      <div class="ab-text">
+        <small>Get it on</small>
+        <strong>Google Play</strong>
+      </div>
+    </a>
+    <a href="#" class="app-btn" target="_blank">
+      <span class="ab-icon">🍎</span>
+      <div class="ab-text">
+        <small>Download on the</small>
+        <strong>App Store</strong>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">My<span style="color:var(--accent)">Super</span>Brain</a>
+      <p>Empowering the next generation to discover, develop, and showcase their unique talents — to a global audience that's ready to take notice.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="http://mysuperbrain.com/index.html">Home</a></li>
+        <li><a href="http://mysuperbrain.com/about-us/about_us.html">About Us</a></li>
+        <li><a href="http://mysuperbrain.com/careers/careers.html">Careers</a></li>
+        <li><a href="http://mysuperbrain.com/contact-us/contact_us.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Follow Us</h5>
+      <ul>
+        <li><a href="https://www.facebook.com/mysuperbrain">Facebook</a></li>
+        <li><a href="https://www.linkedin.com/company/mysuperbrain/">LinkedIn</a></li>
+        <li><a href="https://www.youtube.com/@mysuperbrain22">YouTube</a></li>
+        <li><a href="https://www.instagram.com/msbdotcom/">Instagram</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="http://mysuperbrain.com/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="http://mysuperbrain.com/terms-conditions.html">Terms of Service</a></li>
+        <li><a href="http://mysuperbrain.com/support.html">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MySuperBrain. All rights reserved.</span>
+    <div class="social-links">
+      <a href="https://www.facebook.com/mysuperbrain" target="_blank">f</a>
+      <a href="https://www.linkedin.com/company/mysuperbrain/" target="_blank">in</a>
+      <a href="https://www.youtube.com/@mysuperbrain22" target="_blank">▶</a>
+      <a href="https://www.instagram.com/msbdotcom/" target="_blank">◉</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger reveals in grids
+  document.querySelectorAll('.features-grid .feature-tile, .showcase-grid .showcase-card, .team-grid .team-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+
+  // Contact form
+  document.querySelector('.btn-submit').addEventListener('click', function() {
+    const inputs = document.querySelectorAll('input, textarea');
+    let filled = [...inputs].every(i => i.value.trim());
+    if (filled) {
+      this.textContent = '✓ Message Sent!';
+      this.style.background = 'var(--teal)';
+      inputs.forEach(i => i.value = '');
+      setTimeout(() => { this.textContent = 'Send Message →'; this.style.background = 'var(--accent)'; }, 3000);
+    } else {
+      this.textContent = 'Please fill all fields';
+      setTimeout(() => { this.textContent = 'Send Message →'; }, 2000);
+    }
+  });
+</script>
+</body>
+</html>
